@@ -32,7 +32,7 @@ public:
 	}
 
 	//Перегрузка оператора присваивания =
-	void operator = (const Test& other)
+	Test& operator = (const Test& other)
 	{
 		std::cout << "Вызвался Оператор = для " << this << std::endl;
 		if (this->data != nullptr)
@@ -46,6 +46,7 @@ public:
 		{
 			this->data[i] = other.data[i];
 		}
+		return *this;
 	}
 
 	~Test()
@@ -62,10 +63,11 @@ void main()
 	srand(time(NULL));
 
 
-	Test a(5);
-	Test b(7);
+	Test a(4);
+	Test b(5);
+	Test c(2);
 
-	b = a;
+		a = b = c;
 
 
 
