@@ -57,17 +57,48 @@ public:
 
 };
 
+
+class Point
+{
+private:
+	int x;
+	int y;
+public:
+	Point()
+	{
+		x = 0;
+		y = 0;
+		std::cout << " ÊÎÍÑÒĞÓÊÒÎĞ " << this << std::endl;
+	}
+	Point(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+		std::cout << " ÊÎÍÑÒĞÓÊÒÎĞ " << this << std::endl;
+	}
+	//Ïåğåãğóçêà îïåğàòîğà ğàâåíñòâà ==
+	bool operator ==(const Point& other)
+	{
+		return this->x == other.x && this->y == other.y;
+	}
+	~Point()
+	{
+		std::cout << " ÄÅÑÒĞÓÊÒÎĞ " << this << std::endl;
+	}
+
+};
 void main()
 {
 	setlocale(0, "RU");
 	srand(time(NULL));
 
+	Point a(3, 5);
+	Point b(3, 5);
 
-	Test a(4);
-	Test b(5);
-	Test c(2);
+	bool result = a == b;
 
-		a = b = c;
+	std::cout << result << std::endl;
+
 
 
 
