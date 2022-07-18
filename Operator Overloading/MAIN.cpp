@@ -3,10 +3,6 @@
 class Test
 {
 
-private:
-	int* data;
-	int SIZE;
-
 public:
 	Test(int size)
 	{
@@ -49,56 +45,85 @@ public:
 		return *this;
 	}
 
+
 	~Test()
 	{
 		std::cout << "Вызвался Деструктор для " << this << std::endl;
 		delete[]data;
 	}
+private:
+	int* data;
+	int SIZE;
+
 
 };
 
 
 class Point
 {
-private:
-	int x;
-	int y;
+
 public:
 	Point()
 	{
 		x = 0;
 		y = 0;
-		std::cout << " КОНСТРУКТОР " << this << std::endl;
 	}
 	Point(int x, int y)
 	{
 		this->x = x;
 		this->y = y;
-		std::cout << " КОНСТРУКТОР " << this << std::endl;
 	}
 	//Перегрузка оператора равенства ==
 	bool operator ==(const Point& other)
 	{
 		return this->x == other.x && this->y == other.y;
 	}
+	//Перегрузка оператора сложение +
+	Point operator +(const Point& other)
+	{
+		Point temp;
+		temp.x = this->x + other.x;
+		temp.y = this->y + other.y;
+		return temp;
+	}
+	//Перегрузка оператора префиксного инкремента ++a
+	Point& operator ++() 
+	{
+		this->x++;
+		this->y++;
+		return *this;
+	}
+	//Перегрузка оператора постфиксного инкремента a++ (значение не вписываем) 
+	Point& operator ++(int value)
+	{
+		Point temp(*this);
+		this->x++;
+		this->y++;
+		return temp;
+	}
+	void Print()
+	{
+		std::cout << "x  --  " << x << " y  --  " << y << std::endl;
+	}
 	~Point()
 	{
-		std::cout << " ДЕСТРУКТОР " << this << std::endl;
-	}
 
+	}
+private:
+	int x;
+	int y;
 };
+
 void main()
+
 {
 	setlocale(0, "RU");
 	srand(time(NULL));
 
-	Point a(3, 5);
-	Point b(3, 5);
+	Point a(4, 3);
+	Point b=a++;
 
-	bool result = a == b;
-
-	std::cout << result << std::endl;
-
+	b.Print();
 
 
 
